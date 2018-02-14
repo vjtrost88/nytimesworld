@@ -1,11 +1,11 @@
-from vgg16_hybrid_places_1365 import VGG16_Hybrid_1365
+from keras.applications.vgg16 import VGG16
 from keras.preprocessing import image
-from places_utils import preprocess_input
+from keras.applications.vgg16 import preprocess_input
+import numpy as np
 
 target_dir = "../../work/NYTimesWorld/"
-batch_size = 32
 
-model = VGG16_Hybrid_1365(weights='places', include_top=False)
+model = VGG16(weights='imagenet', include_top=False)
 
 features = []
 
