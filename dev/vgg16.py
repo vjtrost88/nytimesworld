@@ -21,5 +21,5 @@ for img_path in contents:
 
     features.append(model.predict(x))
 
-features = pd.DataFrame(features)
-print(features.head(10))
+#features = pd.DataFrame(features)
+print(features[1:5])
