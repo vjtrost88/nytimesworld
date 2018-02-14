@@ -2,24 +2,23 @@ from keras.applications.vgg16 import VGG16
 from keras.preprocessing import image
 from keras.applications.vgg16 import preprocess_input
 import numpy as np
-import os
-
-directory_in_str = "../../work/NYTImesWorld/"
-
-directory = os.fsencode(directory_in_str)
 
 model = VGG16(weights='imagenet', include_top=False)
 
+f = open("file-paths.txt", "r")
+contents = f.readlines()
+contents = [line.rstrip('\n') for line in contents]
+
 features = []
 
-for img in os.listdir(directory):
-    img_name = os.fsdecode(img)
-    img_path = os.path.join(directory, img_name)
-    pic = image.load_img(img_path, target_size=(2048, 1365))
-    x = image.img_to_array(pic)
+for img_path in contents:
+
+    img = image.load_img(img_path, target_size=(224, 224))
+    x = image.img_to_array(img)
     x = np.expand_dims(x, axis=0)
     x = preprocess_input(x)
 
     features.append(model.predict(x))
 
+features = pd.DataFrame(features)
 print(features.head(10))
