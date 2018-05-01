@@ -26,7 +26,7 @@ def main():
         feature_map.append(features)
 
     feature_map = np.matrix(feature_map)
-    np.savetxt("../../work/vgg16_feature_map.csv", feature_map, delimiter=',')
+    np.savetxt("../../work/vgg16_feature_map_V1.csv", feature_map, delimiter=',')
 
 if __name__ == '__main__':
     main()
